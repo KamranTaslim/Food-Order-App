@@ -32,7 +32,7 @@ const Add = () => {
     formData.append("category", data.category);
     formData.append("image", image);
     const response = await axios.post(
-      "http://localhost:4000/api/food/add",
+      "https://food-order-app-backend-hlua.onrender.com/api/food/add",
       formData
     );
     if (response.data.success) {
