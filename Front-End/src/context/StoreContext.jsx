@@ -7,7 +7,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "http://51.21.245.158/api";
+  const url = "http://51.21.245.158/api/";
   const [token, setToken] = useState("");
   //show data from database
   const [food_list, setFood_list] = useState([]);
@@ -23,7 +23,7 @@ const StoreContextProvider = (props) => {
     //we give access to cart only if user is logged in the add cart
     if (token) {
       await axios.post(
-        url + "/api/cart/add",
+        url + "/cart/add",
         {
           itemId,
         },
@@ -38,7 +38,7 @@ const StoreContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (token) {
       await axios.post(
-        url + "/api/cart/remove",
+        url + "/cart/remove",
         {
           itemId,
         },
@@ -51,7 +51,7 @@ const StoreContextProvider = (props) => {
   //when we are adding cart and remove after refresh the page the cart should be there
   const loadCartData = async (token) => {
     const response = await axios.post(
-      url + "/api/cart/get",
+      url + "/cart/get",
       {},
       {
         headers: { token },
@@ -73,7 +73,7 @@ const StoreContextProvider = (props) => {
   };
   //Get the food list from the database
   const fetchFoodList = async () => {
-    const response = await axios.get(url + "/api/food/list");
+    const response = await axios.get(url + "/food/list");
 
     setFood_list(response.data.data);
   };
