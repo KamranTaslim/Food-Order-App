@@ -11,7 +11,7 @@ import orderRouter from "./routes/orderRoute.js";
 //app config
 
 const app = express();
-const port = 4000;
+const port = 5000;
 
 //middleware
 
@@ -20,17 +20,17 @@ app.use(cors());
 
 //api endpoints
 
-app.use("/api/food", foodRoute);
+app.use("/food", foodRoute);
 app.use("/images", express.static("uploads")); //for access the image on browser
 app.get("/", (req, res) => {
   res.send("Api Working");
 });
 
-app.use("/api/user", userRouter);
+app.use("/user", userRouter);
 
-app.use("/api/cart", cartRouter);
+app.use("/cart", cartRouter);
 
-app.use("/api/order", orderRouter);
+app.use("/order", orderRouter);
 
 app.listen(port, () => {
   console.log("Server is running on " + port);
