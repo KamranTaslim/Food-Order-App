@@ -7,7 +7,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "http://13.60.205.37";
+  const url = "https://foodorderapp.live/";
   const [token, setToken] = useState("");
   //show data from database
   const [food_list, setFood_list] = useState([]);
