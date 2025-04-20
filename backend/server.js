@@ -16,26 +16,21 @@ const port = 5000;
 //middleware
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "https://www.foodorderapp.live"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 //api endpoints
 
-app.use("/api/food", foodRoute);
+app.use("/food", foodRoute);
 app.use("/images", express.static("uploads")); //for access the image on browser
 app.get("/", (req, res) => {
   res.send("Api Working");
 });
 
-app.use("/api/user", userRouter);
+app.use("/user", userRouter);
 
-app.use("/api/cart", cartRouter);
+app.use("/cart", cartRouter);
 
-app.use("/api/order", orderRouter);
+app.use("/order", orderRouter);
 
 app.listen(port, () => {
   console.log("Server is running on " + port);
