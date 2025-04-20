@@ -29,8 +29,10 @@ const loginUser = async (req, res) => {
 };
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+  return jwt.sign({ id }, "random#secret");
 };
+
+
 //register User
 
 const registerUser = async (req, res) => {
@@ -60,8 +62,10 @@ const registerUser = async (req, res) => {
 
     //hashing user password
     const salt = await bcrypt.genSalt(10);
+    console.log("salt"+salt);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+    console.log("hash"+hashedPassword);
+ 
     const newUser = new userModel({
       name: name,
       email: email,
