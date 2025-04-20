@@ -7,6 +7,8 @@ import axios from "axios";
 function LoginPopup({ setShowLogin }) {
   const { url, setToken } = useContext(StoreContext);
   const [currState, setCurrState] = useState("Login");
+  // Add an error message state
+const [errorMessage, setErrorMessage] = useState("");
 
   const [data, setData] = useState({
     name: "",
@@ -24,19 +26,29 @@ function LoginPopup({ setShowLogin }) {
   const onLogin = async (e) => {
     e.preventDefault();
     let newUrl = url;
+    setErrorMessage(""); // Clear any previous error messages
     if (currState === "Login") {
       newUrl += "/api/user/login";
     } else {
       newUrl += "/api/user/register";
     }
-    const response = await axios.post(newUrl, data);
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
-      window.location.reload();
-    } else {
-      alert(response.data.message);
+    try {
+      const response = await axios.post(newUrl, data);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+        window.location.reload();
+      } else {
+        setErrorMessage(response.data.message);
+      }
+    } catch (error) {
+      // Handle error responses from server
+      if (error.response && error.response.data) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage("An unexpected error occurred");
+      }
     }
   };
 
@@ -62,6 +74,11 @@ function LoginPopup({ setShowLogin }) {
           />
         </div>
         <div className="login-popup-input">
+     {errorMessage && (
+    <div className="error-message">
+      {errorMessage}
+    </div>
+  )}
           {currState === "Login" ? (
             <></>
           ) : (
