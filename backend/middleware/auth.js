@@ -6,7 +6,7 @@ export default function authMiddleware(req, res, next) {
     return res.json({ success: false, message: "Not Authorized" });
   }
   try {
-    const token_decode = jwt.verify(token, process.env.JWT_SECRET);
+    const token_decode = jwt.verify(token, "random#secret");
     req.body.userId = token_decode.id;
     next();
   } catch (err) {
