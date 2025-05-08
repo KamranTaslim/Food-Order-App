@@ -1,6 +1,6 @@
 {
-  "name": "admin",
-  "private": true,
+   "name": "admin-panel",
+    "homepage": "/admin",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
