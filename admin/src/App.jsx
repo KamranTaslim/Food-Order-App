@@ -16,11 +16,12 @@ const App = () => {
       <hr />
       <div className="app-content">
         <Sidebar />
-        <Routes>
-          <Route path="/add" element={<Add />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/orders" element={<Orders url={url} />} />
-        </Routes>
+       <Routes>
+  <Route path="/" element={<List />} />  {/* Add this line */}
+  <Route path="/add" element={<Add />} />
+  <Route path="/list" element={<List />} />
+  <Route path="/orders" element={<Orders url={url} />} />
+</Routes>
       </div>
     </div>
   );
