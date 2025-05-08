@@ -8,7 +8,7 @@ import Orders from "./pages/Orders/Orders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const App = () => {
-  const url = "https://food-order-app-backend-hlua.onrender.com";
+ const url = "https://foodorderapp.live/";
   return (
     <div>
       <ToastContainer />
