@@ -7,7 +7,7 @@ const List = () => {
 
   const fetchList = async () => {
     //Api call to get list
-    const response = await axios.get("https://food-order-app-backend-hlua.onrender.com/api/food/list");
+     const response = await axios.get("https://foodorderapp.live/api/food/list");
 
     if (response.data.success) {
       setList(response.data.data);
@@ -21,7 +21,7 @@ const List = () => {
 
   //Remove
   const removeFood = async (foodId) => {
-    const response = await axios.post("https://food-order-app-backend-hlua.onrender.com/api/food/remove", {
+   const response = await axios.post("https://foodorderapp.live/api/food/remove", {
       id: foodId,
     });
     await fetchList();
@@ -45,7 +45,7 @@ const List = () => {
         {list.map((item, index) => {
           return (
             <div className="list-table-format">
-              <img src={"https://food-order-app-backend-hlua.onrender.com/images/" + item.image} alt="" />
+              <img src={"https://foodorderapp.live/api/images/" + item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.price}</p>
